@@ -11,71 +11,66 @@ Command usage: `/batch [channel id or username]`
 Ex: `/batch -100xxx`
 """
 
-START_MESSAGE = '''Hello, {}
+START_MESSAGE = '''**Hello, {}
+I Am "Shareus Demo Bot" , Bulk Link Converter. I Can Convert Links Directly From Your earnbylinks.com Account,
+    
+1. Go To 👉 https://earnbylinks.com/member/tools/api  
+2. Than Copy API Key
+3. Than Type /api than give a single space and than paste your API Key (see example to understand more...)**
 
-I'm a Bot to Convert Other MDisk Links to your MDisk Links or Short Other Links to Shortener Website Links by Using your API. 
+**/api(space)API Key 
+(See Example.👇)
+Example:** `/api de303d5270f481aec928f39883da7b7f9a8812ac `
 
-Just Send me Any Post with Mdisk or Other Links. I will Convert Those Links Using Your API and Send them Back To You. I work in Channels too. 
+**➕ Hit** 👉 /Features To Know More Features Of This Bot.
+**💁‍♀️ Hit** 👉 /help To Get Help.
+**➕ Hit** 👉 /channel Command To Get Help About Adding your channel to bot.
+**➕ Hit** 👉 /footer To Get Help About Adding your Custom Footer to bot.
 
-Hit /help for more information about this Bot
-
-Current Method Selected: **{}**
-Current Website Selected: **{}**
+ if you want to make this way our url shortener website bot so , contact him :-> @HBMoviesGod .....
 '''
 
 
 HELP_MESSAGE = '''
-Hey! My name is {firstname}. I am a Link Convertor and Shortener Bot, here to make your Work Easy and Help you to Earn more
+**Hello, {}
+I Am "Shareus Demo Bot", Bulk Link Converter Bot. I Can Convert Links Directly From Your earnbylinks.com Account,**
+    
+1. Go To 👉 https://earnbylinks.com/member/tools/api  
+2. Than **Copy API** Key
+3. Than Type **/api** than give a **single space** and than **paste** your **API** Key (**see example** to understand more...)
 
-I have lots of handy features, such as 
+**/api(space)API Key 
+(See Example.👇)
+Example:** `/api de303d5270f481aec928f39883da7b7f9a8812ac `
 
-- [Hyperlink](https://t.me/{username})
-- Buttons convert support
-- Include domains 
-- Exclude domains
-- Header and Footer Text support
-- Replace Username
-- Banner Image
-- Batch convert (Admin Only Use)
-- Channel Support (Admin Only Use)
-- Convert forwarded posts (Admin Only Use)
+**➕ Hit** 👉 /Features To Know More Features Of This Bot.
+**💁‍♀️ Hit** 👉 /help To Get Help.
+**➕ Hit** 👉 /channel Command To Get Help About Adding your channel to bot.
+**➕ Hit** 👉 /footer To Get Help About Adding your Custom Footer to bot.
 
-Helpful commands:
-
-- /start: Starts me! You've probably already used this.
-- /help: Sends this message; I'll tell you more about myself!
-- /batch -100xxx: To short or convert all posts of your channel
-
-If you have any bugs or questions on how to use me, have a look at my [website]({repo}), or contact to {owner}.
-
-Available commands:
-
-- /shortener_api
-- /mdisk_api
-- /header
-- /footer
-- /username
-- /banner_image
-- /me
-- /base_site
-- /include_domain
-- /exclude_domain
-
-Use the commands to know more about the same
-
-Below are some features I provide'''
+If You Want Any **Other Shortner** Link Converter Bot Instead Of earnbylinks.com** than **contact** at 👉 @HBMoviesGod (all **shortners support** available.)**'''
 
 
 ABOUT_TEXT = """
-**My Details:**
+**Hey! My name is 'Shareus Demo Bot'. 'I am add your url shortener bot earnbylinks.com .**'
 
-`🤖 Name:` ** {} **
-    
-`📝 Language:` [Python 3](https://www.python.org/)
-`🧰 Framework:` [Pyrogram](https://github.com/pyrogram/pyrogram)
-`👨‍💻 Developer:` [Dev](t.me/ask_admin001)
-`📢 Support:` [Talk Bot](https://t.me/t2linkspromotion_bot)
-`🌐 Source Code:` [GitHub](https://github.com/T2links)
+**⚡Features⚡**
+
+• I can **Convert any** links or posts to your **domain.com** link / post. (Button Links Posts, Hidden links/Hyperlinks All Are Supported)
+
+• I Can **auto** add custom **footer text** to your every post. Hit 👉 /footer To know more...
+
+• I Can **auto** add custom **Header text** to your every post. Hit 👉 /Header To know more...
+
+• I Can **replace / remove** other's **channel links** with **your channel** link. Hit 👉 /channel To know More...
+
+• I Can **Automatically Replace** Your ***Banner** Image To images in the post. Hit  👉/Banner To Know More... 
+
+• **No** need to share **password or email** to convert links.**
+
+ Anyone who want to use any **other shortner** instead of earnbylinks.com than **contact** at 👉 LnThamizha_007 (all **shortners support** available.)
+
+**Click On Custom Alias To Create Custom Link**
 """
 
 
@@ -93,11 +88,12 @@ Methods Available:
 To change method, choose it from the following options:
 """
 
-CUSTOM_ALIAS_MESSAGE = """For custom alias, `[link] | [custom_alias]`, Send in this format
+CUSTOM_ALIAS_MESSAGE = """For Custom Alias, `[link] | [custom_alias]`, Send in this format
 
 This feature works only in private mode only
 
-Ex: https://t.me/example | Example"""
+Ex: https://t.me/HBMoviesGod | domain.com
+"""
 
 
 ADMINS_MESSAGE = """
@@ -160,9 +156,7 @@ START_MESSAGE_REPLY_MARKUP  = InlineKeyboardMarkup([
 
 METHOD_REPLY_MARKUP = InlineKeyboardMarkup([
     [
-        InlineKeyboardButton('MDLINK', callback_data=f'change_method#mdlink'),
-        InlineKeyboardButton('Shortener', callback_data='change_method#shortener'),
-        InlineKeyboardButton('Mdisk', callback_data='change_method#mdisk')
+        InlineKeyboardButton('Shortener', callback_data='change_method#shortener')
     ],
         [
         InlineKeyboardButton('Back', callback_data=f'help_command'),
@@ -181,11 +175,7 @@ BACK_REPLY_MARKUP = InlineKeyboardMarkup([
 USER_ABOUT_MESSAGE = """
 - Shortener Website: {base_site}
 
-- Method: {method}
-
 - {base_site} API: {shortener_api}
-
-- Mdisk API: {mdisk_api}
 
 - Username: @{username}
 
