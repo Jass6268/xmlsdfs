@@ -6,7 +6,7 @@ import traceback
 import aiohttp
 
 import database
-from config import ADMINS, CHANNEL_ID, CHANNELS, PING_INTERVAL, REPLIT, KOYEB
+from config import *
 
 
 class temp(object): # TrojanZ Idea of Temping
