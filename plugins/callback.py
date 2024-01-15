@@ -5,20 +5,15 @@ import os
 import re
 import sys
 
-from config import ADMINS, OWNER_ID, SOURCE_CODE, UPDATE_CHANNEL
+from config import *
 from database import update_user_info
 from database.users import get_user
 from helpers import Helpers, temp
 from pyrogram import Client, filters
 from pyrogram.errors import UserNotParticipant
-from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
-                            InlineKeyboardMarkup)
-from translation import (ABOUT_REPLY_MARKUP, ABOUT_TEXT, ADMINS_MESSAGE,
-                         BACK_REPLY_MARKUP, BATCH_MESSAGE,
-                         CHANNELS_LIST_MESSAGE, CUSTOM_ALIAS_MESSAGE,
-                         HELP_MESSAGE, HELP_REPLY_MARKUP, METHOD_MESSAGE,
-                         METHOD_REPLY_MARKUP, START_MESSAGE,
-                         START_MESSAGE_REPLY_MARKUP)
+from pyrogram.types import *
+from translation import *
+
 from utils import get_me_button
 
 logger = logging.getLogger(__name__)
@@ -131,14 +126,6 @@ async def on_callback_query(bot: Client, query: CallbackQuery):
 
         await query.message.edit(tit, reply_markup=START_MESSAGE_REPLY_MARKUP, disable_web_page_preview=True)
 
-    elif query.data.startswith('change_method'):
-        method_name = query.data.split('#')[1]
-        user = temp.BOT_USERNAME
-        await update_user_info(user_id, {"method": method_name})
-        REPLY_MARKUP = InlineKeyboardMarkup([[InlineKeyboardButton('Back', callback_data='method_command')]])
-
-        await query.message.edit("Method changed successfully to `{method}`".format(method=method_name, username=user), reply_markup=REPLY_MARKUP)
-
     elif query.data == 'method_command':
         s = METHOD_MESSAGE.format(method=user["method"], shortener=user["base_site"])
         return await query.message.edit(s, reply_markup=METHOD_REPLY_MARKUP)
@@ -146,21 +133,11 @@ async def on_callback_query(bot: Client, query: CallbackQuery):
         if user_id not in ADMINS:
             return await query.message.edit("Works only for admins", reply_markup=BACK_REPLY_MARKUP)
 
-        await query.message.edit(BATCH_MESSAGE, reply_markup=BACK_REPLY_MARKUP)
-    elif query.data == 'alias_conf':
-        await query.message.edit(CUSTOM_ALIAS_MESSAGE, reply_markup=BACK_REPLY_MARKUP, disable_web_page_preview=True)
-
     elif query.data == 'admins_list':
         if user_id not in ADMINS:
             return await query.message.edit("Works only for admins", reply_markup=BACK_REPLY_MARKUP)
 
         await query.message.edit(ADMINS_MESSAGE.format(admin_list=await h.get_admins), reply_markup=BACK_REPLY_MARKUP)
-
-    elif query.data == 'channels_list':
-        if user_id not in ADMINS:
-            return await query.message.edit("Works only for admins", reply_markup=BACK_REPLY_MARKUP)
-
-        await query.message.edit(CHANNELS_LIST_MESSAGE.format(channels=await h.get_channels), reply_markup=BACK_REPLY_MARKUP)
 
     elif query.data == 'restart':
         await query.message.edit('**Restarting.....**')
