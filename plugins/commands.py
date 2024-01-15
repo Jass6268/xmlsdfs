@@ -3,21 +3,20 @@ import datetime
 import logging
 
 from validators import domain
-from config import (ADMINS, HEROKU, HEROKU_API_KEY, HEROKU_APP_NAME,
-                    IS_PRIVATE, LOG_CHANNEL, SOURCE_CODE, WELCOME_IMAGE)
+from config import *
 from database import db
-from database.users import (get_user, is_user_exist,
-                            total_users_count, update_user_info)
+from database.users import *
 from helpers import temp
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from plugins.filters import private_use
 from translation import *
-from utils import extract_link, get_me_button, get_size, getHerokuDetails
+from utils import *
+from bot import *
 
 logger = logging.getLogger(__name__)
 
-user_commands = ["set_api", "header", "footer", "username", "banner_image", "base_site", "me"]
+user_commands = ["set_api", "header", "footer", "username", "banner_image", "me"]
 avl_web = ["earnbylinks.com", "earnbylinks.com",]
 
 avl_web1 = "".join(f"- {i}\n" for i in avl_web)
@@ -49,17 +48,14 @@ async def start(c:Client, m:Message):
 async def help_command(c, m: Message):
     s = HELP_MESSAGE.format(
                 firstname=temp.FIRST_NAME,
-                username=temp.BOT_USERNAME,
-                repo=SOURCE_CODE,
-                owner="@ask_admin001" )
+                username=temp.BOT_USERNAME)
 
     if WELCOME_IMAGE:
         return await m.reply_photo(photo=WELCOME_IMAGE, caption=s, reply_markup=HELP_REPLY_MARKUP)
     await m.reply_text(s, reply_markup=HELP_REPLY_MARKUP, disable_web_page_preview=True)
 
 
-@Client.on_message(filters.command('about'))
-@private_use
+@Client.on_message(filters.command('features'))
 async def about_command(c, m: Message):
     reply_markup=ABOUT_REPLY_MARKUP
 
@@ -67,23 +63,6 @@ async def about_command(c, m: Message):
     if WELCOME_IMAGE:
         return await m.reply_photo(photo=WELCOME_IMAGE, caption=ABOUT_TEXT.format(bot.mention(style='md')), reply_markup=reply_markup)
     await m.reply_text(ABOUT_TEXT.format(bot.mention(style='md')),reply_markup=reply_markup , disable_web_page_preview=True)
-
-
-@Client.on_message(filters.command('method') & filters.private)
-@private_use
-async def method_handler(c: Client, m: Message):
-    user_id = m.from_user.id
-    user = await get_user(user_id)
-    cmd = m.command
-    if len(cmd) == 1:
-        s = METHOD_MESSAGE.format(method=user["method"], shortener=user["base_site"])
-        return await m.reply(s, reply_markup=METHOD_REPLY_MARKUP)
-    elif len(cmd) == 2:
-        method = cmd[1]
-        if method not in ["mdisk", "mdlink", "shortener"]:
-            return await m.reply(METHOD_MESSAGE.format(method=user["method"]))
-        await update_user_info(user_id, {"method": method})
-        await m.reply(f"Method updated successfully to {method}")
 
 @Client.on_message(filters.command('restart') & filters.user(ADMINS) & filters.private)
 @private_use
@@ -110,9 +89,6 @@ async def stats_handler(c: Client, m:Message):
 
         msg = f"""
 **- Total Users:** `{total_users}`
-**- Total Posts Sent:** `{link_stats['posts']}`
-**- Total Links Shortened:** `{link_stats['links']}`
-**- Total Mdisk Links Shortened:** `{link_stats['mdisk_links']}`
 **- Total Shortener Links Shortened:** `{link_stats['shortener_links']}`
 **- Used Storage:** `{size}`
 **- Total Free Storage:** `{free}`
@@ -137,20 +113,7 @@ async def log_file(bot, message):
     except Exception as e:
         await message.reply(str(e))
 
-@Client.on_message(filters.command('mdisk_api') & filters.private)
-@private_use
-async def mdisk_api_handler(bot, message: Message):
-    user_id = message.from_user.id
-    user = await get_user(user_id)
-    cmd = message.command
-    if len(cmd) == 1:
-        return await message.reply(MDISK_API_MESSAGE.format(user["mdisk_api"]))
-    elif len(cmd) == 2:
-        api = cmd[1].strip()
-        await update_user_info(user_id, {"mdisk_api": api})
-        await message.reply(f"Mdisk API updated successfully to {api}")
-
-@Client.on_message(filters.command('set_api') & filters.private)
+@Client.on_message(filters.command('api') & filters.private)
 @private_use
 async def set_api_handler(bot, m: Message):
     user_id = m.from_user.id
@@ -198,7 +161,8 @@ async def footer_handler(bot, m: Message):
         await update_user_info(user_id, {"footer_text": footer_text})
         await m.reply("Footer Text Updated Successfully")
 
-@Client.on_message(filters.command('username') & filters.private)
+
+@Client.on_message(filters.command('channel') & filters.private)
 @private_use
 async def username_handler(bot, m: Message):
     user_id = m.from_user.id
@@ -243,26 +207,6 @@ async def banner_image_handler(bot, m: Message):
 
             else:
                 return await m.reply_text("Image URL is Invalid")
-
-@Client.on_message(filters.command('base_site') & filters.private)
-@private_use
-async def base_site_handler(bot, m:Message):
-    user_id = m.from_user.id
-    user = await get_user(user_id)
-    cmd = m.command
-    site = user['base_site']
-    text = f"`/base_site (base_site)`\n\nCurrent base site: {site}\n\n EX: `/base_site shareus.in`\n\nAvailable base sites:\n{avl_web1}\nAnd All alternate sites to earnbylinks.com"
-    if len(cmd) == 1:
-        return await m.reply(
-        text=text,
-        disable_web_page_preview=True)
-    elif len(cmd) == 2:    
-        base_site = cmd[1].strip()
-        if not domain(base_site):
-            return await m.reply(text=text,disable_web_page_preview=True)
-        await update_user_info(user_id, {"base_site": base_site})
-        await m.reply("Base Site updated successfully")
-
 
 @Client.on_message(filters.command('me') & filters.private)
 @private_use
@@ -413,21 +357,23 @@ async def unban_user_handler(c: Client, m: Message):
         logging.exception(e, exc_info=True)
 
 
-@Client.on_message(filters.command('info') & filters.private & filters.user(ADMINS))
-@private_use
-async def get_user_info_handler(c: Client, m: Message):
-    try:
-        if len(m.command) != 2:
-            return await m.reply_text("Wrong Input!!\n`/info user_id`")
-        user = await get_user(int(m.command[1]))
-        if not user:
-            return await m.reply_text("User doesn't exist")
-        res = USER_ABOUT_MESSAGE.format(base_site=user["base_site"], method=user["method"], set_api='This is something secret', mdisk_api='This is something secret', username=user["username"], header_text=user["header_text"].replace('\n', '\n') if user["header_text"] else None, footer_text=user["footer_text"].replace('\n', '\n') if user["footer_text"] else None, banner_image=user["banner_image"])
+@Client.on_message(filters.command('info') & filters.private)
+async def me_handler(bot, m:Message):
+    user_id = m.from_user.id
+    user = await get_user(user_id)
 
-        res = f'User: `{user["user_id"]}`\n{res}'
-        reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton('Ban', callback_data=f'ban#{user["user_id"]}'), InlineKeyboardButton('Close', callback_data='delete')]])
+    user_id = m.from_user.id
+    user = await get_user(user_id)
+    res = USER_ABOUT_MESSAGE.format(
+                base_site=user["base_site"], 
+                method=user["method"], 
+                shortener_api=user["shortener_api"], 
+                mdisk_api=user["mdisk_api"],
+                username=user["username"],
+                header_text=user["header_text"].replace(r'\n', '\n') if user["header_text"] else None,
+                footer_text=user["footer_text"].replace(r'\n', '\n') if user["footer_text"] else None,
+                banner_image=user["banner_image"])
 
-        return await m.reply_text(res, reply_markup=reply_markup, quote=True)
-    except Exception as e:
-        await m.reply_text(e)
-        logging.error(e)
+    buttons = await get_me_button(user)
+    reply_markup = InlineKeyboardMarkup(buttons)
+    return await m.reply_text(res, reply_markup=reply_markup, disable_web_page_preview=True)
