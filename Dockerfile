@@ -8,5 +8,6 @@ RUN cd /
 RUN pip3 install -U pip && pip3 install -U -r requirements.txt
 RUN mkdir /URL-Shortener-V2 
 WORKDIR /URL-Shortener-V2 
-COPY start.sh /start.sh
-CMD ["/bin/bash", "/start.sh"]
+COPY . .
+
+CMD python3 main.py
