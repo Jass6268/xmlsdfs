@@ -17,7 +17,7 @@ API_HASH = os.environ.get("API_HASH") #API Hash from https://my.telegram.org/aut
 BOT_TOKEN = os.environ.get("BOT_TOKEN") # Bot token from @BotFather
 ADMINS = [int(i.strip()) for i in os.environ.get("ADMINS").split(",")] if os.environ.get("ADMINS") else []
 
-DATABASE_NAME = os.environ.get("DATABASE_NAME", "MdiskConvertor")
+DATABASE_NAME = os.environ.get("DATABASE_NAME", "Custer1")
 DATABASE_URL = os.environ.get("DATABASE_URL", None) # mongodb uri from https://www.mongodb.com/
 OWNER_ID =  int(os.environ.get("OWNER_ID")) # id of the owner
 ADMINS.append(OWNER_ID) if OWNER_ID not in ADMINS else []
@@ -27,10 +27,10 @@ LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "0")) # log channel for informat
 UPDATE_CHANNEL = os.environ.get("UPDATE_CHANNEL", False) # For Force Subscription
 BROADCAST_AS_COPY = is_enabled((os.environ.get('BROADCAST_AS_COPY', "False")), False) # true if forward should be avoided
 IS_PRIVATE = is_enabled(os.environ.get("IS_PRIVATE", 'False'), 'False') # true for private use and restricting users
-SOURCE_CODE = os.environ.get("SOURCE_CODE", "https://github.com/kevinnadar22/URL-Shortener-V2") # for upstream repo
+SOURCE_CODE = os.environ.get("SOURCE_CODE", "https://t.me/hbmoviesgod") # for upstream repo
 WELCOME_IMAGE = os.environ.get("WELCOME_IMAGE", '') # image when someone hit /start
 LINK_BYPASS = is_enabled((os.environ.get('LINK_BYPASS', "False")), False) # if true, droplink urls will be bypassed 
-BASE_SITE = os.environ.get("BASE_SITE", "droplink.co") # your shortener site domain
+BASE_SITE = os.environ.get("BASE_SITE", "earnbylinks.com") # your shortener site domain
 
 # For Admin use
 CHANNELS = is_enabled((os.environ.get('CHANNELS', "True")), True)
