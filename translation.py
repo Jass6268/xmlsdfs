@@ -73,21 +73,6 @@ ABOUT_TEXT = """
 **Click On Custom Alias To Create Custom Link**
 """
 
-
-METHOD_MESSAGE = """
-Current Method: {method}
-    
-Methods Available:
-
-> `mdlink` - Change all the links of the post to your MDisk account first and then short to {shortener} link.
-
-> `shortener` - Short all the links of the post to {shortener} link directly.
-
-> `mdisk` - Save all the links of the post to your Mdisk account.
-    
-To change method, choose it from the following options:
-"""
-
 CUSTOM_ALIAS_MESSAGE = """For Custom Alias, `[link] | [custom_alias]`, Send in this format
 
 This feature works only in private mode only
@@ -111,19 +96,12 @@ List of channels that have access to this Bot:
 
 HELP_REPLY_MARKUP = InlineKeyboardMarkup([
     [
-        InlineKeyboardButton('Methods', callback_data=f'method_command'),
-        InlineKeyboardButton('Batch', callback_data=f'cbatch_command'),
-        
-    ],
-
-    [
         InlineKeyboardButton('Custom Alias', callback_data=f'alias_conf'),
         InlineKeyboardButton('Admins', callback_data=f'admins_list'),    
     ],
 
     [
         
-        InlineKeyboardButton('Channels', callback_data=f'channels_list'),
         InlineKeyboardButton('Home', callback_data='start_command')
         
     ],
@@ -148,7 +126,6 @@ START_MESSAGE_REPLY_MARKUP  = InlineKeyboardMarkup([
         InlineKeyboardButton('About', callback_data='about_command')
     ],
         [
-        InlineKeyboardButton('Method', callback_data=f'method_command'),
         InlineKeyboardButton('Close', callback_data='delete')
     ],
 
@@ -156,9 +133,6 @@ START_MESSAGE_REPLY_MARKUP  = InlineKeyboardMarkup([
 
 METHOD_REPLY_MARKUP = InlineKeyboardMarkup([
     [
-        InlineKeyboardButton('Shortener', callback_data='change_method#shortener')
-    ],
-        [
         InlineKeyboardButton('Back', callback_data=f'help_command'),
         InlineKeyboardButton('Close', callback_data='delete')
     ],
@@ -189,24 +163,12 @@ USER_ABOUT_MESSAGE = """
 """
 
 
-MDISK_API_MESSAGE = """To add or update your Mdisk API, \n`/mdisk_api mdisk_api`
-            
-Ex: `/mdisk_api 6LZq851sXoPHugiKQq`
-            
-Others Mdisk Links will be automatically changed to the API of this Mdisk account
-
-Get your Mdisk API from @VideoToolMoneyTreebot
-
-Current Mdisk API: `{}`"""
-
 SHORTENER_API_MESSAGE = """To add or update your Shortner Website API, 
-`/shortener_api [api]`
+`/api [api]`
             
-Ex: `/shortener_api 6LZq851sXofffPHugiKQq`
+Ex: `/api 6LZq851sXofffPHugiKQq`
 
 Current Website: {base_site}
-
-To change your Shortener Website: /base_site
 
 Current Shortener API: `{shortener_api}`"""
 
@@ -226,13 +188,16 @@ For adding line break use \\n
 
 To Remove Footer Text: `/footer remove`"""
 
-USERNAME_TEXT = """Current Username: {username}
+USERNAME_TEXT = """**Hello {username}, I am Bulk Link Converter Bot From Linked url shortener bot name Account,**
 
-Usage: `/username your_username` (without @)
+**🌟 Type** /channel (channel link or username)
 
-This username will be automatically replaced with other usernames in the post
+**example:**
+/channel Username
+Or
+/channel https://t.me/Username
 
-To remove this username, `/username remove`"""
+**🤘 Hit** 👉 /features To Know More Features Of This Bot.**"""
 
 BANNER_IMAGE = """
 Usage: `/banner_image image_url` or reply to any Image with this command
