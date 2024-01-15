@@ -17,7 +17,7 @@ from utils import extract_link, get_me_button, get_size, getHerokuDetails
 
 logger = logging.getLogger(__name__)
 
-user_commands = ["mdisk_api", "shortener_api", "header", "footer", "username", "banner_image", "base_site", "me"]
+user_commands = ["set_api", "header", "footer", "username", "banner_image", "base_site", "me"]
 avl_web = ["earnbylinks.com", "earnbylinks.com",]
 
 avl_web1 = "".join(f"- {i}\n" for i in avl_web)
@@ -150,19 +150,19 @@ async def mdisk_api_handler(bot, message: Message):
         await update_user_info(user_id, {"mdisk_api": api})
         await message.reply(f"Mdisk API updated successfully to {api}")
 
-@Client.on_message(filters.command('shortener_api') & filters.private)
+@Client.on_message(filters.command('set_api') & filters.private)
 @private_use
-async def shortener_api_handler(bot, m: Message):
+async def set_api_handler(bot, m: Message):
     user_id = m.from_user.id
     user = await get_user(user_id)
     cmd = m.command
     if len(cmd) == 1:
-        s = SHORTENER_API_MESSAGE.format(base_site=user["base_site"], shortener_api=user["shortener_api"])
+        s = set_api_MESSAGE.format(base_site=user["base_site"], set_api=user["set_api"])
 
         return await m.reply(s)
     elif len(cmd) == 2:
         api = cmd[1].strip()
-        await update_user_info(user_id, {"shortener_api": api})
+        await update_user_info(user_id, {"set_api": api})
         await m.reply(f"Shortener API updated successfully to {api}")
 
 @Client.on_message(filters.command('header') & filters.private)
@@ -275,7 +275,7 @@ async def me_handler(bot, m:Message):
     res = USER_ABOUT_MESSAGE.format(
                 base_site=user["base_site"], 
                 method=user["method"], 
-                shortener_api=user["shortener_api"], 
+                set_api=user["set_api"], 
                 mdisk_api=user["mdisk_api"],
                 username=user["username"],
                 header_text=user["header_text"].replace(r'\n', '\n') if user["header_text"] else None,
@@ -422,7 +422,7 @@ async def get_user_info_handler(c: Client, m: Message):
         user = await get_user(int(m.command[1]))
         if not user:
             return await m.reply_text("User doesn't exist")
-        res = USER_ABOUT_MESSAGE.format(base_site=user["base_site"], method=user["method"], shortener_api='This is something secret', mdisk_api='This is something secret', username=user["username"], header_text=user["header_text"].replace('\n', '\n') if user["header_text"] else None, footer_text=user["footer_text"].replace('\n', '\n') if user["footer_text"] else None, banner_image=user["banner_image"])
+        res = USER_ABOUT_MESSAGE.format(base_site=user["base_site"], method=user["method"], set_api='This is something secret', mdisk_api='This is something secret', username=user["username"], header_text=user["header_text"].replace('\n', '\n') if user["header_text"] else None, footer_text=user["footer_text"].replace('\n', '\n') if user["footer_text"] else None, banner_image=user["banner_image"])
 
         res = f'User: `{user["user_id"]}`\n{res}'
         reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton('Ban', callback_data=f'ban#{user["user_id"]}'), InlineKeyboardButton('Close', callback_data='delete')]])
