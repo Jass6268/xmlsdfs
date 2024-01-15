@@ -1,11 +1,11 @@
 import logging
-from config import LOG_CHANNEL
-from database.users import get_user
+from config import *
+from database.users import *
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from utils import (extract_link, main_convertor_handler, update_stats, user_api_check)
+from utils import *
 from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid
-from plugins.filters import private_use
+from plugins.filters import *
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +28,7 @@ async def private_link_handler(c: Client, message: Message):
         if vld is not True:
             return await message.reply_text(vld)
         try:
-            txt = await message.reply('`Cooking... It will take some time if you have enabled Link Bypass`', quote=True)
+            txt = await message.reply('`Converting.......`', quote=True)
 
             await main_convertor_handler(message, user_method, user=user)
             await update_stats(message, user_method)
