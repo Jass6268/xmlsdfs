@@ -12,8 +12,7 @@ from mdisky import Mdisk
 from pyrogram import Client
 from pyrogram.enums import ParseMode
 from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid
-from pyrogram.types import (InlineKeyboardButton, InlineKeyboardMarkup,
-                            InputMediaPhoto, Message)
+from pyrogram.types import *
 from shortzy import Shortzy
 
 from config import *
@@ -42,10 +41,6 @@ async def main_convertor_handler(message:Message, type:str, edit_caption:bool=Fa
         return
 
     user_method = user["method"]
-
-    # Checking if the user has set his method or not. If not, it will reply with a message.
-    if user_method is None:
-        return await message.reply(text="Set your /method first")
 
     # Bypass Links
     caption = await droplink_bypass_handler(caption)
@@ -359,8 +354,5 @@ async def user_api_check(user):
     if user_method in ["mdisk", "mdlink"] and not user["mdisk_api"]:
         text += "\n\nSet your /mdisk_api to continue..."
     if user_method in ["shortener", "mdlink"] and not user["shortener_api"]:
-        text += f"\n\nSet your /shortener_api to continue...\nCurrent Website {user['base_site']}"
-
-    if not user_method:
-        text = "\n\nSet your /method first"
+        text += f"\n\nSet your /api to continue...\nCurrent Website {user['base_site']}"
     return text or True
