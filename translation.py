@@ -45,7 +45,7 @@ ABOUT_TEXT = """
 
 **⚡Features⚡**
 
-• I can **Convert any** links or posts to your **domain.com** link / post. (Button Links Posts, Hidden links/Hyperlinks All Are Supported)
+• I can **Convert any** links or posts to your Accounts link / post. (Button Links Posts, Hidden links/Hyperlinks All Are Supported)
 
 • I Can **auto** add custom **footer text** to your every post. Hit 👉 /footer To know more...
 
@@ -83,14 +83,9 @@ List of channels that have access to this Bot:
 
 
 HELP_REPLY_MARKUP = InlineKeyboardMarkup([
-    [
-        InlineKeyboardButton('Custom Alias', callback_data=f'alias_conf'),
-        InlineKeyboardButton('Admins', callback_data=f'admins_list'),    
-    ],
 
     [
-        
-        InlineKeyboardButton('Home', callback_data='start_command')
+        InlineKeyboardButton('More Features', callback_data=f'about_command')
         
     ],
 
@@ -99,33 +94,21 @@ HELP_REPLY_MARKUP = InlineKeyboardMarkup([
 
 
 ABOUT_REPLY_MARKUP = InlineKeyboardMarkup([
+
     [
-        InlineKeyboardButton('Home', callback_data=f'start_command'),
-        InlineKeyboardButton('Help', callback_data=f'help_command')
+        InlineKeyboardButton('Custom Alias', callback_data=f'alias_conf')
+        
     ],
-    [
-        InlineKeyboardButton('Close', callback_data='delete')
-    ]
+
+
 ])
 
 START_MESSAGE_REPLY_MARKUP  = InlineKeyboardMarkup([
     [
-        InlineKeyboardButton('Help', callback_data=f'help_command'),
-        InlineKeyboardButton('About', callback_data='about_command')
-    ],
-        [
-        InlineKeyboardButton('Close', callback_data='delete')
-    ],
-
+        InlineKeyboardButton('Get Api', url=f'https://earnbylinks.com/member/tools/api')
+    ]
 ])
 
-METHOD_REPLY_MARKUP = InlineKeyboardMarkup([
-    [
-        InlineKeyboardButton('Back', callback_data=f'help_command'),
-        InlineKeyboardButton('Close', callback_data='delete')
-    ],
-
-])
 
 BACK_REPLY_MARKUP = InlineKeyboardMarkup([
     [
