@@ -252,8 +252,6 @@ async def stats_handler(c: Client, m:Message):
 **- Used Storage:** `{size}`
 **- Total Free Storage:** `{free}`
     """
-    except Exception as e:
-        logging.error(e, exc_info=True)
 
 
 @Client.on_message(filters.command('logs') & filters.user(ADMINS) & filters.private)
