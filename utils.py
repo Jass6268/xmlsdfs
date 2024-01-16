@@ -47,9 +47,7 @@ async def main_convertor_handler(message:Message, type:str, edit_caption:bool=Fa
 
     # A dictionary which contains the methods to be called.
     METHODS = {
-        "mdisk": mdisk_api_handler,
         "shortener": replace_link,
-        "mdlink": mdisk_droplink_convertor
     }
 
     # Replacing the username with your username.
@@ -79,7 +77,7 @@ async def main_convertor_handler(message:Message, type:str, edit_caption:bool=Fa
                 fileid = InputMediaPhoto(banner_image, caption=shortenedText)
 
     if message.text:
-        if user_method in ["shortener", "mdlink"] and '|' in caption:
+        if user_method in ["shortener"] and '|' in caption:
             regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))\s\|\s([a-zA-Z0-9_]){,30}"
             if custom_alias := re.match(regex, caption):
                 custom_alias = custom_alias[0].split('|')
@@ -125,11 +123,6 @@ async def reply_markup_handler(message:Message, method_func, user):
         reply_markup = InlineKeyboardMarkup(buttsons)
         return reply_markup
 
-
-async def mdisk_api_handler(user, text, alias=""):
-    api_key = user["mdisk_api"]
-    mdisk = Mdisk(api_key)
-    return await mdisk.convert_from_text(text)
 
 async def replace_link(user, text, alias=""):
     api_key = user["set_api"]
@@ -293,52 +286,6 @@ async def TimeFormatter(milliseconds) -> str:
     return tmp[:-2]
 
 
-async def getHerokuDetails(h_api_key, h_app_name):
-    if not h_api_key or not h_app_name:
-        logger.info("if you want heroku dyno stats, read readme.")
-        return None
-    try:
-        heroku_api = "https://api.heroku.com"
-        Heroku = heroku3.from_key(h_api_key)
-        app = Heroku.app(h_app_name)
-        useragent = await getRandomUserAgent()
-        user_id = Heroku.account().id
-        headers = {"User-Agent": useragent, "Authorization": f"Bearer {h_api_key}", "Accept": "application/vnd.heroku+json; version=3.account-quotas"}
-
-        path = f"/accounts/{user_id}/actions/get-quota"
-        async with aiohttp.ClientSession() as session:
-            result = await session.get(heroku_api + path, headers=headers)
-        result = await result.json()
-        abc = ""
-        account_quota = result["account_quota"]
-        quota_used = result["quota_used"]
-        quota_remain = account_quota - quota_used
-        abc += f"<b>- Dyno Used:</b> `{await TimeFormatter(quota_used)}`\n"
-        abc += f"<b>- Free:</b> `{await TimeFormatter(quota_remain)}`\n"
-        AppQuotaUsed = 0
-        OtherAppsUsage = 0
-        for apps in result["apps"]:
-            if str(apps.get("app_uuid")) == str(app.id):
-                try:
-                    AppQuotaUsed = apps.get("quota_used")
-                except Exception as t:
-                    logger.error("error when adding main dyno")
-                    logger.error(t)
-            else:
-                try:
-                    OtherAppsUsage += int(apps.get("quota_used"))
-                except Exception as t:
-                    logger.error("error when adding other dyno")
-                    logger.error(t)
-        logger.info(f"This App: {str(app.name)}")
-        abc += f"<b>- This App:</b> `{await TimeFormatter(AppQuotaUsed)}`\n"
-        abc += f"<b>- Other:</b> `{await TimeFormatter(OtherAppsUsage)}`"
-        return abc
-    except Exception as g:
-        logger.error(g)
-        return None
-
-
 async def get_me_button(user):
     user_id = user["user_id"]
     buttons = []
@@ -351,8 +298,6 @@ async def get_me_button(user):
 async def user_api_check(user):
     user_method = user["method"]
     text = ""
-    if user_method in ["mdisk", "mdlink"] and not user["mdisk_api"]:
-        text += "\n\nSet your /mdisk_api to continue..."
-    if user_method in ["shortener", "mdlink"] and not user["set_api"]:
+    if user_method in ["shortener"] and not user["set_api"]:
         text += f"\n\nSet your /api to continue...\nCurrent Website {user['base_site']}"
     return text or True
