@@ -175,7 +175,7 @@ async def extract_link(string):
 # todo -> bypass long droplink url
 async def droplink_bypass_handler(text):
     if LINK_BYPASS:
-        links = re.findall(r'https?://earnbylinks.com[^\s"*<>`()]+', text)	
+        links = re.findall(r'https?://urllinkshort.in[^\s"*<>`()]+', text)	
         for link in links:
             bypassed_link = await droplink_bypass(link)
             text = text.replace(link, bypassed_link)
@@ -204,7 +204,7 @@ async def droplink_bypass(url):
 
 async def is_droplink_url(url):
     domain = urlparse(url).netloc
-    domain = url if "earnbylinks.com" in domain else False
+    domain = url if "urllinkshort.in" in domain else False
     return domain
 
 
