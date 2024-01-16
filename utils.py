@@ -132,7 +132,7 @@ async def mdisk_api_handler(user, text, alias=""):
     return await mdisk.convert_from_text(text)
 
 async def replace_link(user, text, alias=""):
-    api_key = user["shortener_api"]
+    api_key = user["set_api"]
     base_site = user["base_site"]
     shortzy = Shortzy(api_key, base_site)
     links = await extract_link(text)
