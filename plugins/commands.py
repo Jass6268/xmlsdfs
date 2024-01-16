@@ -256,7 +256,7 @@ async def stats_handler(c: Client, m:Message):
             #heroku = await getHerokuDetails(HEROKU_API_KEY, HEROKU_APP_NAME)
             #msg += f"\n- **Heroku Stats:**\n{heroku}"
 
-        return await txt.edit(msg)
+        return #await txt.edit(msg)
     except Exception as e:
         logging.error(e, exc_info=True)
 
