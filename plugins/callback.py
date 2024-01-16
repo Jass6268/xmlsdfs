@@ -126,6 +126,9 @@ async def on_callback_query(bot: Client, query: CallbackQuery):
 
         await query.message.edit(tit, reply_markup=START_MESSAGE_REPLY_MARKUP, disable_web_page_preview=True)
 
+    elif query.data == 'alias_conf':
+        await query.message.edit(CUSTOM_ALIAS_MESSAGE, reply_markup=BACK_REPLY_MARKUP, disable_web_page_preview=True)
+
     elif query.data == 'admins_list':
         if user_id not in ADMINS:
             return await query.message.edit("Works only for admins", reply_markup=BACK_REPLY_MARKUP)

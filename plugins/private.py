@@ -1,10 +1,10 @@
 import logging
 from config import *
 from database.users import *
-from pyrogram import Client, filters
-from pyrogram.types import Message
+from pyrogram import *
+from pyrogram.types import *
 from utils import *
-from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid
+from pyrogram.errors.exceptions.bad_request_400 import *
 from plugins.filters import *
 
 logger = logging.getLogger(__name__)
