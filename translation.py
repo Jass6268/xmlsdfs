@@ -15,8 +15,6 @@ Example:** `/api de303d5270f481aec928f39883da7b7f9a8812ac `
 **💁‍♀️ Hit** 👉 /help To Get Help.
 **➕ Hit** 👉 /channel Command To Get Help About Adding your channel to bot.
 **➕ Hit** 👉 /footer To Get Help About Adding your Custom Footer to bot.
-
- if you want to make this way our url shortener website bot so , contact him :-> @HBMoviesGod .....
 '''
 
 
@@ -35,9 +33,7 @@ Example:** `/api de303d5270f481aec928f39883da7b7f9a8812ac `
 **➕ Hit** 👉 /Features To Know More Features Of This Bot.
 **💁‍♀️ Hit** 👉 /help To Get Help.
 **➕ Hit** 👉 /channel Command To Get Help About Adding your channel to bot.
-**➕ Hit** 👉 /footer To Get Help About Adding your Custom Footer to bot.
-
-If You Want Any **Other Shortner** Link Converter Bot Instead Of earnbylinks.com** than **contact** at 👉 @HBMoviesGod (all **shortners support** available.)**'''
+**➕ Hit** 👉 /footer To Get Help About Adding your Custom Footer to bot.**'''
 
 
 ABOUT_TEXT = """
@@ -143,6 +139,7 @@ Current Website: {base_site}
 
 Current Shortener API: `{shortener_api}`"""
 
+
 HEADER_MESSAGE = """Reply to the Header Text You Want
 
 This Text will be added to the top of every message caption or text
@@ -178,6 +175,7 @@ This image will be automatically replaced with other images in the post
 To remove custom image, `/banner_image remove`
 
 Eg: `/banner_image https://www.nicepng.com/png/detail/436-4369539_movie-logo-film.png`"""
+
 
 INCLUDE_DOMAIN_TEXT = """
 Use this option if you want to short only links from the following domains list.
