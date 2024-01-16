@@ -12,14 +12,14 @@ def is_enabled(value, default):
         return default
 
 # Mandatory variables for the bot to start
-API_ID = int(os.environ.get("API_ID", "25900867")) #API ID from https://my.telegram.org/auth
-API_HASH = os.environ.get("API_HASH", "7c4d5240180cf5797d7c9a10f34488f7") #API Hash from https://my.telegram.org/auth
+API_ID = int(os.environ.get("API_ID", "15626409")) #API ID from https://my.telegram.org/auth
+API_HASH = os.environ.get("API_HASH", "e09cddb4a79ce873eedc8699c8516241") #API Hash from https://my.telegram.org/auth
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "6394333248:AAEaMz5vTBQNPGxngx2h1a93qiGkyhMI-To") # Bot token from @BotFather
-ADMINS = [int(i.strip()) for i in os.environ.get("ADMINS").split(",")] if os.environ.get("ADMINS") else []
+ADMINS = [int(i.strip()) for i in os.environ.get("ADMINS").split("1875452714")] if os.environ.get("ADMINS") else []
 
 DATABASE_NAME = os.environ.get("DATABASE_NAME", "cluster0")
 DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://sundiskteam:123@cluster0.0hakgtg.mongodb.net/?retryWrites=true&w=majority") # mongodb uri from https://www.mongodb.com/
-OWNER_ID =  int(os.environ.get("OWNER_ID")) # id of the owner
+OWNER_ID =  int(os.environ.get("OWNER_ID", "1332773789")) # id of the owner
 ADMINS.append(OWNER_ID) if OWNER_ID not in ADMINS else []
 
 #  Optionnal variables
@@ -30,11 +30,11 @@ IS_PRIVATE = is_enabled(os.environ.get("IS_PRIVATE", 'False'), 'False') # true f
 SOURCE_CODE = os.environ.get("SOURCE_CODE", "https://t.me/hbmoviesgod") # for upstream repo
 WELCOME_IMAGE = os.environ.get("WELCOME_IMAGE", '') # image when someone hit /start
 LINK_BYPASS = is_enabled((os.environ.get('LINK_BYPASS', "False")), False) # if true, droplink urls will be bypassed 
-BASE_SITE = os.environ.get("BASE_SITE", "earnbylinks.com") # your shortener site domain
+BASE_SITE = os.environ.get("BASE_SITE", "urllinkshort.in") # your shortener site domain
 
 # For Admin use
 CHANNELS = is_enabled((os.environ.get('CHANNELS', "True")), True)
-CHANNEL_ID = [int(i.strip()) for i in os.environ.get("CHANNEL_ID").split(" ")] if os.environ.get("CHANNEL_ID") else []
+CHANNEL_ID = [int(i.strip()) for i in os.environ.get("CHANNEL_ID").split("-1001797656736")] if os.environ.get("CHANNEL_ID") else []
 
 FORWARD_MESSAGE = is_enabled((os.environ.get('FORWARD_MESSAGE', "False")), False) # true if forwardd message to converted by reposting the post
 
