@@ -1,16 +1,5 @@
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-
-BATCH_MESSAGE = BATCH = """
-This command is used to short or convert links from first to last posts
-
-Make the bot as an admin in your channel
-
-Command usage: `/batch [channel id or username]`
-
-Ex: `/batch -100xxx`
-"""
-
 START_MESSAGE = '''**Hello, {}
 I Am "Shareus Demo Bot" , Bulk Link Converter. I Can Convert Links Directly From Your earnbylinks.com Account,
     
@@ -33,7 +22,7 @@ Example:** `/api de303d5270f481aec928f39883da7b7f9a8812ac `
 
 HELP_MESSAGE = '''
 **Hello, {}
-I Am "Shareus Demo Bot", Bulk Link Converter Bot. I Can Convert Links Directly From Your earnbylinks.com Account,**
+I Am Bulk Link Converter Bot. I Can Convert Links Directly From Your earnbylinks.com Account,**
     
 1. Go To 👉 https://earnbylinks.com/member/tools/api  
 2. Than **Copy API** Key
@@ -68,7 +57,6 @@ ABOUT_TEXT = """
 
 • **No** need to share **password or email** to convert links.**
 
- Anyone who want to use any **other shortner** instead of earnbylinks.com than **contact** at 👉 LnThamizha_007 (all **shortners support** available.)
 
 **Click On Custom Alias To Create Custom Link**
 """
