@@ -1,7 +1,7 @@
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 START_MESSAGE = '''**Hello, {}
-I Am "Shareus Demo Bot" , Bulk Link Converter. I Can Convert Links Directly From Your earnbylinks.com Account,
+I Am  Bulk Link Converter. I Can Convert Links Directly From Your earnbylinks.com Account,
     
 1. Go To 👉 https://earnbylinks.com/member/tools/api  
 2. Than Copy API Key
@@ -71,12 +71,15 @@ List of Admins who has access to this Bot
 {admin_list}
 """
 
+ABOUT_REPLY_MARKUP = InlineKeyboardMarkup([
 
-CHANNELS_LIST_MESSAGE = """
-List of channels that have access to this Bot:
+    [
+        InlineKeyboardButton('Custom Alias', callback_data=f'alias_conf')
+        
+    ],
 
-{channels}"""
 
+])
 
 HELP_REPLY_MARKUP = InlineKeyboardMarkup([
 
@@ -88,23 +91,11 @@ HELP_REPLY_MARKUP = InlineKeyboardMarkup([
 
 ])
 
-
-ABOUT_REPLY_MARKUP = InlineKeyboardMarkup([
-
-    [
-        InlineKeyboardButton('Custom Alias', callback_data=f'alias_conf')
-        
-    ],
-
-
-])
-
 START_MESSAGE_REPLY_MARKUP  = InlineKeyboardMarkup([
     [
         InlineKeyboardButton('Get Api', url=f'https://earnbylinks.com/member/tools/api')
     ]
 ])
-
 
 BACK_REPLY_MARKUP = InlineKeyboardMarkup([
     [
@@ -138,7 +129,6 @@ Ex: `/api 6LZq851sXofffPHugiKQq`
 Current Website: {base_site}
 
 Current Shortener API: `{shortener_api}`"""
-
 
 HEADER_MESSAGE = """Reply to the Header Text You Want
 
