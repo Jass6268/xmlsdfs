@@ -15,7 +15,7 @@ def is_enabled(value, default):
 API_ID = int(os.environ.get("API_ID", "15626409")) #API ID from https://my.telegram.org/auth
 API_HASH = os.environ.get("API_HASH", "e09cddb4a79ce873eedc8699c8516241") #API Hash from https://my.telegram.org/auth
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "6394333248:AAEaMz5vTBQNPGxngx2h1a93qiGkyhMI-To") # Bot token from @BotFather
-ADMINS = [int(i.strip()) for i in os.environ.get("ADMINS").split("1875452714")] if os.environ.get("ADMINS") else []
+ADMINS = [int(i.strip()) for i in os.environ.get("ADMINS").split("1875452714, 1332773789")] if os.environ.get("ADMINS") else []
 
 DATABASE_NAME = os.environ.get("DATABASE_NAME", "cluster0")
 DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://sundiskteam:123@cluster0.0hakgtg.mongodb.net/?retryWrites=true&w=majority") # mongodb uri from https://www.mongodb.com/
