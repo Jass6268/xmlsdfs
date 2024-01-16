@@ -240,10 +240,6 @@ async def stats_handler(c: Client, m:Message):
         size = await get_size(size)
         free = await get_size(free)
         link_stats = await db.get_bot_stats()
-        runtime = datetime.datetime.now()
-
-        t = runtime - temp.START_TIME
-        runtime = str(datetime.timedelta(seconds=t.seconds))
         total_users = await total_users_count()
 
         msg = f"""
@@ -252,13 +248,14 @@ async def stats_handler(c: Client, m:Message):
 **- Used Storage:** `{size}`
 **- Total Free Storage:** `{free}`
     """
-        HEROKU and m.from_user.id in ADMINS:
-            #heroku = await getHerokuDetails(HEROKU_API_KEY, HEROKU_APP_NAME)
-            #msg += f"\n- **Heroku Stats:**\n{heroku}"
+        #if HEROKU and m.from_user.id in ADMINS:
+         #   heroku = await getHerokuDetails(HEROKU_API_KEY, HEROKU_APP_NAME)
+          #  msg += f"\n- **Heroku Stats:**\n{heroku}"
 
-        return
+        return await txt.edit(msg)
     except Exception as e:
         logging.error(e, exc_info=True)
+
 
 
 @Client.on_message(filters.command('logs') & filters.user(ADMINS) & filters.private)
