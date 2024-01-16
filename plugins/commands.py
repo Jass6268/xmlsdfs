@@ -251,14 +251,7 @@ async def stats_handler(c: Client, m:Message):
 **- Total Shortener Links Shortened:** `{link_stats['shortener_links']}`
 **- Used Storage:** `{size}`
 **- Total Free Storage:** `{free}`
-
-**- Runtime:** `{runtime}`
     """
-        if HEROKU and m.from_user.id in ADMINS:
-            heroku = await getHerokuDetails(HEROKU_API_KEY, HEROKU_APP_NAME)
-            msg += f"\n- **Heroku Stats:**\n{heroku}"
-
-        return await txt.edit(msg)
     except Exception as e:
         logging.error(e, exc_info=True)
 
