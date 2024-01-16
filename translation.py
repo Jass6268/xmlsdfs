@@ -53,6 +53,12 @@ ABOUT_TEXT = """
 
 • **No** need to share **password or email** to convert links.**
 
+• I Can **Remove** Your ***Header** Image To images in the post. Hit  👉/header remove To Know More... 
+
+• I Can **Remove** Your ***Footer** Image To images in the post. Hit  👉/footer remove To Know More... 
+
+• I Can **Remove** Your ***Banner Image** Image To images in the post. Hit  👉/banner_image remove To Know More... 
+
 
 **Click On Custom Alias To Create Custom Link**
 """
@@ -153,7 +159,7 @@ USERNAME_TEXT = """**Hello {username}, I am Bulk Link Converter Bot From Linked 
 **example:**
 /channel Username
 Or
-/channel https://t.me/Username
+/channel https://t.me/hbmoviesfun
 
 **🤘 Hit** 👉 /features To Know More Features Of This Bot.**"""
 
