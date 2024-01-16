@@ -1,9 +1,9 @@
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 START_MESSAGE = '''**Hello, {}
-I Am  Bulk Link Converter. I Can Convert Links Directly From Your earnbylinks.com Account,
+I Am  Bulk Link Converter. I Can Convert Links Directly From Your urllinkshort.in Account,
     
-1. Go To 👉 https://earnbylinks.com/member/tools/api  
+1. Go To 👉 https://urllinkshort.in/member/tools/api  
 2. Than Copy API Key
 3. Than Type /api than give a single space and than paste your API Key (see example to understand more...)**
 
@@ -20,9 +20,9 @@ Example:** `/api de303d5270f481aec928f39883da7b7f9a8812ac `
 
 HELP_MESSAGE = '''
 **Hello, {}
-I Am Bulk Link Converter Bot. I Can Convert Links Directly From Your earnbylinks.com Account,**
+I Am Bulk Link Converter Bot. I Can Convert Links Directly From Your urllinkshort.in Account,**
     
-1. Go To 👉 https://earnbylinks.com/member/tools/api  
+1. Go To 👉 https://urllinkshort.in/member/tools/api  
 2. Than **Copy API** Key
 3. Than Type **/api** than give a **single space** and than **paste** your **API** Key (**see example** to understand more...)
 
@@ -37,7 +37,7 @@ Example:** `/api de303d5270f481aec928f39883da7b7f9a8812ac `
 
 
 ABOUT_TEXT = """
-**Hey! My name is 'Shareus Demo Bot'. 'I am add your url shortener bot earnbylinks.com .**'
+**Hey! My name is 'Shareus Demo Bot'. 'I am add your url shortener bot urllinkshort.in .**'
 
 **⚡Features⚡**
 
@@ -99,7 +99,7 @@ HELP_REPLY_MARKUP = InlineKeyboardMarkup([
 
 START_MESSAGE_REPLY_MARKUP  = InlineKeyboardMarkup([
     [
-        InlineKeyboardButton('Get Api', url=f'https://earnbylinks.com/member/tools/api')
+        InlineKeyboardButton('Get Api', url=f'https://urllinkshort.in/member/tools/api')
     ]
 ])
 
