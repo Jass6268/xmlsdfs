@@ -1,16 +1,5 @@
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-
-BATCH_MESSAGE = BATCH = """
-This command is used to short or convert links from first to last posts
-
-Make the bot as an admin in your channel
-
-Command usage: `/batch [channel id or username]`
-
-Ex: `/batch -100xxx`
-"""
-
 START_MESSAGE = '''**Hello, {}
 I Am "Shareus Demo Bot" , Bulk Link Converter. I Can Convert Links Directly From Your earnbylinks.com Account,
     
@@ -26,14 +15,12 @@ Example:** `/api de303d5270f481aec928f39883da7b7f9a8812ac `
 **💁‍♀️ Hit** 👉 /help To Get Help.
 **➕ Hit** 👉 /channel Command To Get Help About Adding your channel to bot.
 **➕ Hit** 👉 /footer To Get Help About Adding your Custom Footer to bot.
-
- if you want to make this way our url shortener website bot so , contact him :-> @HBMoviesGod .....
 '''
 
 
 HELP_MESSAGE = '''
 **Hello, {}
-I Am "Shareus Demo Bot", Bulk Link Converter Bot. I Can Convert Links Directly From Your earnbylinks.com Account,**
+I Am Bulk Link Converter Bot. I Can Convert Links Directly From Your earnbylinks.com Account,**
     
 1. Go To 👉 https://earnbylinks.com/member/tools/api  
 2. Than **Copy API** Key
@@ -46,9 +33,7 @@ Example:** `/api de303d5270f481aec928f39883da7b7f9a8812ac `
 **➕ Hit** 👉 /Features To Know More Features Of This Bot.
 **💁‍♀️ Hit** 👉 /help To Get Help.
 **➕ Hit** 👉 /channel Command To Get Help About Adding your channel to bot.
-**➕ Hit** 👉 /footer To Get Help About Adding your Custom Footer to bot.
-
-If You Want Any **Other Shortner** Link Converter Bot Instead Of earnbylinks.com** than **contact** at 👉 @HBMoviesGod (all **shortners support** available.)**'''
+**➕ Hit** 👉 /footer To Get Help About Adding your Custom Footer to bot.**'''
 
 
 ABOUT_TEXT = """
@@ -56,7 +41,7 @@ ABOUT_TEXT = """
 
 **⚡Features⚡**
 
-• I can **Convert any** links or posts to your **domain.com** link / post. (Button Links Posts, Hidden links/Hyperlinks All Are Supported)
+• I can **Convert any** links or posts to your Accounts link / post. (Button Links Posts, Hidden links/Hyperlinks All Are Supported)
 
 • I Can **auto** add custom **footer text** to your every post. Hit 👉 /footer To know more...
 
@@ -68,7 +53,6 @@ ABOUT_TEXT = """
 
 • **No** need to share **password or email** to convert links.**
 
- Anyone who want to use any **other shortner** instead of earnbylinks.com than **contact** at 👉 LnThamizha_007 (all **shortners support** available.)
 
 **Click On Custom Alias To Create Custom Link**
 """
@@ -95,14 +79,9 @@ List of channels that have access to this Bot:
 
 
 HELP_REPLY_MARKUP = InlineKeyboardMarkup([
-    [
-        InlineKeyboardButton('Custom Alias', callback_data=f'alias_conf'),
-        InlineKeyboardButton('Admins', callback_data=f'admins_list'),    
-    ],
 
     [
-        
-        InlineKeyboardButton('Home', callback_data='start_command')
+        InlineKeyboardButton('More Features', callback_data=f'about_command')
         
     ],
 
@@ -111,33 +90,21 @@ HELP_REPLY_MARKUP = InlineKeyboardMarkup([
 
 
 ABOUT_REPLY_MARKUP = InlineKeyboardMarkup([
+
     [
-        InlineKeyboardButton('Home', callback_data=f'start_command'),
-        InlineKeyboardButton('Help', callback_data=f'help_command')
+        InlineKeyboardButton('Custom Alias', callback_data=f'alias_conf')
+        
     ],
-    [
-        InlineKeyboardButton('Close', callback_data='delete')
-    ]
+
+
 ])
 
 START_MESSAGE_REPLY_MARKUP  = InlineKeyboardMarkup([
     [
-        InlineKeyboardButton('Help', callback_data=f'help_command'),
-        InlineKeyboardButton('About', callback_data='about_command')
-    ],
-        [
-        InlineKeyboardButton('Close', callback_data='delete')
-    ],
-
+        InlineKeyboardButton('Get Api', url=f'https://earnbylinks.com/member/tools/api')
+    ]
 ])
 
-METHOD_REPLY_MARKUP = InlineKeyboardMarkup([
-    [
-        InlineKeyboardButton('Back', callback_data=f'help_command'),
-        InlineKeyboardButton('Close', callback_data='delete')
-    ],
-
-])
 
 BACK_REPLY_MARKUP = InlineKeyboardMarkup([
     [
@@ -171,6 +138,7 @@ Ex: `/api 6LZq851sXofffPHugiKQq`
 Current Website: {base_site}
 
 Current Shortener API: `{shortener_api}`"""
+
 
 HEADER_MESSAGE = """Reply to the Header Text You Want
 
@@ -207,6 +175,7 @@ This image will be automatically replaced with other images in the post
 To remove custom image, `/banner_image remove`
 
 Eg: `/banner_image https://www.nicepng.com/png/detail/436-4369539_movie-logo-film.png`"""
+
 
 INCLUDE_DOMAIN_TEXT = """
 Use this option if you want to short only links from the following domains list.
